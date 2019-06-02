@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Movies from './Movies'
+import AddMovie from './AddMovie'
 
 class App extends Component {
   state = {
@@ -16,11 +17,19 @@ class App extends Component {
       movies
     })
   }
+  addMovie = (movie) => {
+    movie.id = Math.random()
+    let movies = [...this.state.movies, movie]
+    this.setState({
+      movies
+    })
+  }
   render() {
     return (
           <div className="movie-app container">
             <h1 className='center blue-text'>Movies to watch</h1>
             <Movies movies={this.state.movies} deleteMovie={this.deleteMovie}/>
+            <AddMovie addMovie={this.addMovie}/>
           </div>
       );    
   }
